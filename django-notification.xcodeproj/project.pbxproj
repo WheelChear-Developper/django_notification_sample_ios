@@ -26,6 +26,7 @@
 		102984BA1F2051B6000A31C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		102984BD1F2051B6000A31C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		102984BF1F2051B6000A31C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		102984C51F205E6E000A31C6 /* django-notification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "django-notification.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 		102984AD1F2051B6000A31C6 /* django-notification */ = {
 			isa = PBXGroup;
 			children = (
+				102984C51F205E6E000A31C6 /* django-notification.entitlements */,
 				102984B11F2051B6000A31C6 /* AppDelegate.h */,
 				102984B21F2051B6000A31C6 /* AppDelegate.m */,
 				102984B41F2051B6000A31C6 /* ViewController.h */,
@@ -111,7 +113,12 @@
 					102984AA1F2051B6000A31C6 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = N5PT49EP9P;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -275,11 +282,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "django-notification/django-notification.entitlements";
 				DEVELOPMENT_TEAM = N5PT49EP9P;
 				INFOPLIST_FILE = "django-notification/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.mobile-innovation.django-notification";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "fad5293c-c2e0-4bc7-bf75-168820302707";
+				PROVISIONING_PROFILE_SPECIFIER = Django_Notification_Development;
 			};
 			name = Debug;
 		};
@@ -287,11 +297,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "django-notification/django-notification.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = N5PT49EP9P;
 				INFOPLIST_FILE = "django-notification/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.mobile-innovation.django-notification";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "1f830776-5b8c-4dc4-b2ba-cda28fa2635d";
+				PROVISIONING_PROFILE_SPECIFIER = Django_Notification_Distribution;
 			};
 			name = Release;
 		};
