@@ -285,6 +285,7 @@
 				CODE_SIGN_ENTITLEMENTS = "django-notification/django-notification.entitlements";
 				DEVELOPMENT_TEAM = N5PT49EP9P;
 				INFOPLIST_FILE = "django-notification/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.mobile-innovation.django-notification";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -301,6 +302,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = N5PT49EP9P;
 				INFOPLIST_FILE = "django-notification/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "jp.mobile-innovation.django-notification";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -328,6 +330,7 @@
 				102984C41F2051B6000A31C6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

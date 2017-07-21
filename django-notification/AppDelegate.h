@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+{
+    NSURLConnection *_conection;
+    long _statusCode;
+    NSMutableData *_initialiseData;
+}
 @property (strong, nonatomic) UIWindow *window;
-
++ (AppDelegate*) sharedAppDelegate;
+@property (nonatomic, weak) NSString *deviceTokenString;
 
 @end
 

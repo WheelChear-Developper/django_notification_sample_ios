@@ -14,6 +14,10 @@
 
 @implementation AppDelegate
 
++ (AppDelegate *)sharedAppDelegate {
+
+    return (AppDelegate *)[[UIApplication sharedApplication] delegate];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
@@ -62,12 +66,24 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
     // デバイストークンの両端の「<>」を取り除く
-    NSString *deviceTokenString = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    _deviceTokenString = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
 
     // デバイストークン中の半角スペースを除去する
-    deviceTokenString = [deviceTokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"Device Token = %@",deviceTokenString);
-//    [Configuration setDeviceTokenKey:deviceTokenString];
+    _deviceTokenString = [_deviceTokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"Device Token = %@",_deviceTokenString);
+
+    // POST通信
+    NSString *str_URL = [NSString stringWithFormat:@"%@%@",
+                         @"http://192.168.0.170:8000",
+                         [NSString stringWithFormat:@"/token_post"]];
+    NSURL *URL_STRING = [NSURL URLWithString:str_URL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL_STRING];
+    NSString *requestBody = [NSString stringWithFormat:@"device_token=%@&uuid=%@" ,_deviceTokenString, [[UIDevice currentDevice].identifierForVendor UUIDString]];
+    [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:20];
+    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLConnection* _conection_NewAcountSet = [NSURLConnection connectionWithRequest:request delegate:self];
+
 
 #ifdef LOCAL
     //LOCAL
@@ -152,5 +168,20 @@ didRegisterForRemoteNotificationsWithError:(NSError *)err
 #endif
 }
 ////////////////// デバイストークン関連 //////////////////////
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+
+    _initialiseData = [NSMutableData data];
+    //ステータスコード
+    _statusCode = ((NSHTTPURLResponse *)response).statusCode;
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)response {
+
+    //データ格納
+    [_initialiseData appendData:response];
+}
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
+}
 
 @end
