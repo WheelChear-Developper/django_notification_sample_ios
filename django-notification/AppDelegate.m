@@ -75,10 +75,10 @@
     // POST通信
     NSString *str_URL = [NSString stringWithFormat:@"%@%@",
                          @"http://192.168.0.170:8000",
-                         [NSString stringWithFormat:@"/token_post"]];
+                         [NSString stringWithFormat:@"/api/notification/token_post"]];
     NSURL *URL_STRING = [NSURL URLWithString:str_URL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL_STRING];
-    NSString *requestBody = [NSString stringWithFormat:@"device_token=%@&uuid=%@" ,_deviceTokenString, [[UIDevice currentDevice].identifierForVendor UUIDString]];
+    NSString *requestBody = [NSString stringWithFormat:@"apikey=ABCDEF123456&device_token=%@&device_type=iOS" ,_deviceTokenString];
     [request setHTTPMethod:@"POST"];
     [request setTimeoutInterval:20];
     [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
