@@ -1,0 +1,28 @@
+//
+//  driver-Prefix.pch
+//  django-notification
+//
+//  Created by M.Amatani on 2017/08/08.
+//  Copyright © 2017年 Mobile Innovation. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "AppDelegate.h"
+#import "Configuration.h"
+#import "Api.h"
+#import "SetColor.h"
+#import "InputCheck.h"
+#import "UIColor+Hex.h"
+#import "UIView+Toast.h"
+
+#endif
+
+#define app (AppDelegate *)[[UIApplication sharedApplication] delegate]

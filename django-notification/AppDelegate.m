@@ -21,12 +21,38 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    //通知件数初期化
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
     // push通知呼び出し用
     UIUserNotificationType types =    UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert;
     UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
     [application registerUserNotificationSettings:mySettings];
 
     return YES;
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"pushInfo: %@", [userInfo description]);
+
+    // バッジを消す（０件に設定）
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
+    // 新着メッセージ数
+//    long messageCount = [[[userInfo objectForKey:@"aps"] objectForKey:@"badge"] longValue];
+
+    // 未読数をバッジ表示する
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = messageCount;
+
+    // アプリがフォアグラウンドで起動している時だけで処理を行いたい場合
+    if (application.applicationState == UIApplicationStateActive) {
+        NSLog(@"");
+    }
+    // アプリがバックグラウンドで起動している時だけで処理を行いたい場合
+    if (application.applicationState == UIApplicationStateInactive) {
+        NSLog(@"");
+    }
 }
 
 

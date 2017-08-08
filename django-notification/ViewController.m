@@ -17,6 +17,11 @@
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     NSLog(@"viewDidAppear");
@@ -28,4 +33,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)Api_BackGround:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(NSString*)errorcode {
+
+
+}
 @end

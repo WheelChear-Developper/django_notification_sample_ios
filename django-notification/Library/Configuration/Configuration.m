@@ -15,6 +15,32 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+#pragma mark - ApiKey
+static NSString *CONFIGURATION_APIKEY = @"Configuration.ApiKey";
++ (NSString*)getApiKey
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults registerDefaults:@{CONFIGURATION_APIKEY : @("")}];
+    return [userDefaults stringForKey:CONFIGURATION_APIKEY];
+}
++ (void)setApiKey:(NSString*)value
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:value forKey:CONFIGURATION_APIKEY];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 #pragma mark - DeviceTokenKey
 static NSString *CONFIGURATION_DEVICETOKENKEY = @"Configuration.DeviceTokenKey";
 + (NSString*)getDeviceTokenKey

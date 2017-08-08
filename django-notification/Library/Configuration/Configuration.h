@@ -10,6 +10,14 @@
 #pragma mark - Synchronize
 + (void)synchronize;
 
+#pragma mark - ApiKey
++ (NSString*)getApiKey;
++ (void)setApiKey:(NSString*)value;
+
+
+
+
+
 #pragma mark - DeviceTokenKey
 + (NSString*)getDeviceTokenKey;
 + (void)setDeviceTokenKey:(NSString*)value;
