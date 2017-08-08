@@ -241,13 +241,16 @@ static NSString *Err_Connection = @"Err_Connection";
 }
 - (void)Main_KeyGet:(UIViewController*)currentView {
 
-    // GET通信
+    // POST通信
     NSString *str_URL = [NSString stringWithFormat:@"%@%@",
                          [self getDomain],
-                         [NSString stringWithFormat:@"/apikey"]];
+                         [NSString stringWithFormat:@"/apikey_get"]];
     NSURL *URL_STRING = [NSURL URLWithString:str_URL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL_STRING];
+    NSString *requestBody = [NSString stringWithFormat:@"app_code=%@" , @"APP_fGsIk7S3SSi"];
+    [request setHTTPMethod:@"POST"];
     [request setTimeoutInterval:lng_Timeout];
+    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
     _conection_ApiKeyGet = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
