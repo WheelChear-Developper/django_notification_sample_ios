@@ -18,6 +18,9 @@
 
     // api設定
     _api = [[Api alloc]init];
+
+    // デバイストークンチェック
+    tm_deviceTokenCheck = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(deviceTokenCheck:) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -29,9 +32,6 @@
 
     //APIKEYの取得
     [_api Api_KeyGet:self];
-
-    // デバイストークンチェック
-    tm_deviceTokenCheck = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(deviceTokenCheck:) userInfo:nil repeats:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
