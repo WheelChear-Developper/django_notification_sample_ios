@@ -80,6 +80,17 @@ static NSString *Err_Connection = @"Err_Connection";
         bln_setFlf = true;
     }
 
+    // DeviceTokenサーバー設定用
+    if(connection == _conection_DeviceTokenPost){
+
+        _initialiseData_DeviceTokenPost = [NSMutableData data];
+
+        //ステータスコード
+        _statusCode_DeviceTokenPost = ((NSHTTPURLResponse *)response).statusCode;
+
+        //管理フラグセット
+        bln_setFlf = true;
+    }
 
 
     
@@ -112,6 +123,16 @@ static NSString *Err_Connection = @"Err_Connection";
 
         //データ格納
         [_initialiseData_ApiKeyGet appendData:response];
+
+        //管理フラグセット
+        bln_setFlf = true;
+    }
+
+    // DeviceTokenサーバー設定用
+    if(connection == _conection_DeviceTokenPost){
+
+        //データ格納
+        [_initialiseData_DeviceTokenPost appendData:response];
 
         //管理フラグセット
         bln_setFlf = true;
@@ -160,9 +181,9 @@ static NSString *Err_Connection = @"Err_Connection";
             NSLog(@"JSON(%@) = %@", _conection_name, jsonParser);
 
             if(jsonParser.count > 0){
-                [_apidelegate Api_KeyGet:NO arrayData:jsonParser errorcode:[NSString stringWithFormat:@"%ld", statusCode]];
+                [_apidelegate Api_KeyGet:NO arrayData:jsonParser errorcode:statusCode];
             }else{
-                [_apidelegate Api_KeyGet:NO arrayData:nil errorcode:[NSString stringWithFormat:@"%ld", statusCode]];
+                [_apidelegate Api_KeyGet:NO arrayData:nil errorcode:statusCode];
             }
 
         }else{
@@ -174,6 +195,43 @@ static NSString *Err_Connection = @"Err_Connection";
             [_apidelegate Api_KeyGet:NO arrayData:nil errorcode:[NSString stringWithFormat:@"%ld", statusCode]];
         }
     }
+
+    //-------------------------------- DeviceTokenサーバー設定用 --------------------------------------
+    if(connection == _conection_DeviceTokenPost){
+
+        //読込中解除
+        [self unsetProgressHUD];
+
+        NSString* _conection_name = @"conection_DeviceTokenPost";
+        long statusCode = _statusCode_DeviceTokenPost;
+
+        //正常読み込み時
+        if(statusCode == 200){
+
+            NSError *error = nil;
+            id json = [NSJSONSerialization JSONObjectWithData:_initialiseData_DeviceTokenPost options:NSJSONReadingAllowFragments error:&error];
+            NSMutableArray *jsonParser = (NSMutableArray*)json;
+
+            NSLog(@"----- %@ -----", _conection_name);
+            NSLog(@"JSON(%@) = %@", _conection_name, jsonParser);
+
+            if(jsonParser.count > 0){
+                [_apidelegate Api_DeviceTokenPost:NO arrayData:jsonParser errorcode:statusCode];
+            }else{
+                [_apidelegate Api_DeviceTokenPost:NO arrayData:nil errorcode:statusCode];
+            }
+
+        }else{
+
+            //エラートースト表示（デバッグのみ）
+            [self errToast:_conection_name statusCode:statusCode];
+
+            //エラー処理
+            [_apidelegate Api_DeviceTokenPost:NO arrayData:nil errorcode:statusCode];
+        }
+    }
+
+
     
 
     
@@ -184,11 +242,26 @@ static NSString *Err_Connection = @"Err_Connection";
     
     //読込中解除
     [self unsetProgressHUD];
-    
+
     if(connection == _conection_ApiKeyGet){
+
+        //エラーでのログイン画面へ
+        [_apidelegate Api_KeyGet:NO arrayData:nil errorcode:Err_Connection.integerValue];
+
+    }else{
+
+        // 通信エラーメッセージ表示
+        [self messageAlert:connection
+                      type:Err_Other
+                     Title:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrTitleMsg",@"")
+                   message:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrMsg",@"")
+                 actionmsg:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrOK",@"")];
+    }
+    
+    if(connection == _conection_DeviceTokenPost){
         
         //エラーでのログイン画面へ
-        [_apidelegate Api_KeyGet:NO arrayData:nil errorcode:Err_Connection];
+        [_apidelegate Api_DeviceTokenPost:NO arrayData:nil errorcode:Err_Connection.integerValue];
         
     }else{
         
@@ -199,6 +272,13 @@ static NSString *Err_Connection = @"Err_Connection";
                    message:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrMsg",@"")
                  actionmsg:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrOK",@"")];
     }
+
+
+
+
+
+
+
 }
 
 //エラー表示用トースト（デバッグのみ）
@@ -219,6 +299,31 @@ static NSString *Err_Connection = @"Err_Connection";
 }
 
 /////////////// ↑　通信用メソッド　↑　////////////////////
+
+//カレントViewでメッセージ表示
+-(void)messageAlert:(NSURLConnection*)conectionType
+               type:(NSString*)typeName
+              Title:(NSString*)errTitle
+            message:(NSString*)errMessage
+          actionmsg:(NSString*)actionMessage
+{
+
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:errTitle
+                                        message:errMessage
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    if(conectionType == nil){
+
+        //OKのみのシングルアクション
+        [alert addAction:[UIAlertAction actionWithTitle:actionMessage
+                                                  style:UIAlertActionStyleDefault
+                                                handler:nil]];
+    }
+
+
+    [_CurrentView presentViewController:alert animated:YES completion:nil];
+}
 
 //============================== API用キー取得（起動時取得） ======================================
 - (BOOL)Api_KeyGet:(UIViewController*)currentView {
@@ -254,36 +359,43 @@ static NSString *Err_Connection = @"Err_Connection";
     _conection_ApiKeyGet = [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
+//============================== DeviceTokenサーバー設定用 ======================================
+- (BOOL)Api_DeviceTokenPost:(UIViewController*)currentView {
 
+    //通信開始
+    [self setProgressHUD];
 
+    if(currentView == nil){
+        return false;
+    }else{
 
+        //呼び出し元のViewセット
+        _CurrentView = currentView;
 
+        //アカウントチェック用
+        [self Main_DeviceTokenPost:currentView];
 
-
-
-//カレントViewでメッセージ表示
--(void)messageAlert:(NSURLConnection*)conectionType
-               type:(NSString*)typeName
-              Title:(NSString*)errTitle
-            message:(NSString*)errMessage
-          actionmsg:(NSString*)actionMessage
-{
-    
-    UIAlertController *alert =
-    [UIAlertController alertControllerWithTitle:errTitle
-                                        message:errMessage
-                                 preferredStyle:UIAlertControllerStyleAlert];
-    
-    if(conectionType == nil){
-        
-        //OKのみのシングルアクション
-        [alert addAction:[UIAlertAction actionWithTitle:actionMessage
-                                                  style:UIAlertActionStyleDefault
-                                                handler:nil]];
+        return true;
     }
-
-    
-    [_CurrentView presentViewController:alert animated:YES completion:nil];
 }
+- (void)Main_DeviceTokenPost:(UIViewController*)currentView {
+
+    // POST通信
+    NSString *str_URL = [NSString stringWithFormat:@"%@%@",
+                         [self getDomain],
+                         [NSString stringWithFormat:@"/notification/token_post"]];
+    NSURL *URL_STRING = [NSURL URLWithString:str_URL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL_STRING];
+#ifdef DEBUG
+    NSString *requestBody = [NSString stringWithFormat:@"apikey=%@&device_token=%@&device_type=iOS_Staging" , [Configuration getApiKey], [Configuration getDeviceTokenKey]];
+#else
+    NSString *requestBody = [NSString stringWithFormat:@"apikey=%@&device_token=%@&device_type=iOS" , [Configuration getApiKey], [Configuration getDeviceTokenKey]];
+#endif
+    [request setHTTPMethod:@"POST"];
+    [request setTimeoutInterval:lng_Timeout];
+    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
+    _conection_DeviceTokenPost = [NSURLConnection connectionWithRequest:request delegate:self];
+}
+
 
 @end

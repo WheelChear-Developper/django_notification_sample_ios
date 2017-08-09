@@ -98,68 +98,7 @@
     _deviceTokenString = [_deviceTokenString stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSLog(@"Device Token = %@",_deviceTokenString);
 
-    // POST通信
-    NSString *str_URL = [NSString stringWithFormat:@"%@%@",
-                         @"http://192.168.0.170:8000",
-                         [NSString stringWithFormat:@"/api/notification/token_post"]];
-    NSURL *URL_STRING = [NSURL URLWithString:str_URL];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL_STRING];
-#ifdef DEBUG
-    NSString *requestBody = [NSString stringWithFormat:@"apikey=ABCDEF123456&device_token=%@&device_type=iOS_Staging" ,_deviceTokenString];
-#else
-    NSString *requestBody = [NSString stringWithFormat:@"apikey=ABCDEF123456&device_token=%@&device_type=iOS" ,_deviceTokenString];
-#endif
-    [request setHTTPMethod:@"POST"];
-    [request setTimeoutInterval:20];
-    [request setHTTPBody:[requestBody dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLConnection* _conection_NewAcountSet = [NSURLConnection connectionWithRequest:request delegate:self];
-
-
-#ifdef LOCAL
-    //LOCAL
-    NSLog(@"▶LOCAL:%@",deviceTokenString);
-    /*
-     //トースト
-     [self.window.rootViewController.view makeToast:[NSString stringWithFormat:@"[ %@ ]",deviceTokenString]
-     duration:5.0
-     position:CSToastPositionBottom
-     title:@"> LOCAL"
-     image:nil
-     style:nil
-     completion:^(BOOL didTap) {
-     }];
-     */
-#endif
-#ifdef STAGING
-    //Rease
-    NSLog(@"▶STAGING:%@",deviceTokenString);
-    /*
-     //トースト
-     [self.window.rootViewController.view makeToast:[NSString stringWithFormat:@"[ %@ ]",deviceTokenString]
-     duration:5.0
-     position:CSToastPositionBottom
-     title:@"> STAGING"
-     image:nil
-     style:nil
-     completion:^(BOOL didTap) {
-     }];
-     */
-#endif
-#ifdef PRODUCTION
-    //Rease
-    NSLog(@"▶PRODUCTION:%@",deviceTokenString);
-    /*
-     //トースト
-     [self.window.rootViewController.view makeToast:[NSString stringWithFormat:@"[ %@ ]",deviceTokenString]
-     duration:5.0
-     position:CSToastPositionBottom
-     title:@"> PRODUCTION"
-     image:nil
-     style:nil
-     completion:^(BOOL didTap) {
-     }];
-     */
-#endif
+    [Configuration setDeviceTokenKey:_deviceTokenString];
 }
 
 // デバイストークン取得失敗
@@ -198,20 +137,5 @@ didRegisterForRemoteNotificationsWithError:(NSError *)err
 #endif
 }
 ////////////////// デバイストークン関連 //////////////////////
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-
-    _initialiseData = [NSMutableData data];
-    //ステータスコード
-    _statusCode = ((NSHTTPURLResponse *)response).statusCode;
-}
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)response {
-
-    //データ格納
-    [_initialiseData appendData:response];
-}
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    
-}
 
 @end

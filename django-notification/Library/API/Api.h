@@ -9,9 +9,11 @@
 
 @protocol ApiDelegate <NSObject>
 // API用キー取得（起動時取得）
-- (void)Api_KeyGet:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(NSString*)errorcode;
+- (void)Api_KeyGet:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(long)errorcode;
+// DeviceTokenサーバー設定用
+- (void)Api_DeviceTokenPost:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(long)errorcode;
 // API用結果処理メソッド取得
-- (void)Api_BackGround:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(NSString*)errorcode;
+- (void)Api_BackGround:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(long)errorcode;
 @end
 
 @interface Api : NSObject <NSURLConnectionDataDelegate>
@@ -23,6 +25,13 @@
     long _statusCode_ApiKeyGet;
     NSMutableData *_initialiseData_ApiKeyGet;
 
+    // DeviceTokenサーバー設定用
+    NSURLConnection *_conection_DeviceTokenPost;
+    long _statusCode_DeviceTokenPost;
+    NSMutableData *_initialiseData_DeviceTokenPost;
+
+
+
     
     
 }
@@ -30,6 +39,8 @@
 
 // API用キー取得（起動時取得）
 - (BOOL)Api_KeyGet:(UIViewController*)currentView;
+// DeviceTokenサーバー設定用
+- (BOOL)Api_DeviceTokenPost:(UIViewController*)currentView;
 
 
 

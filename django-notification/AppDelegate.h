@@ -14,8 +14,8 @@
     long _statusCode;
     NSMutableData *_initialiseData;
 }
-@property (strong, nonatomic) UIWindow *window;
 + (AppDelegate*) sharedAppDelegate;
+@property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, weak) NSString *deviceTokenString;
 
 @end

@@ -29,18 +29,6 @@ static NSString *CONFIGURATION_APIKEY = @"Configuration.ApiKey";
     [userDefaults setObject:value forKey:CONFIGURATION_APIKEY];
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 #pragma mark - DeviceTokenKey
 static NSString *CONFIGURATION_DEVICETOKENKEY = @"Configuration.DeviceTokenKey";
 + (NSString*)getDeviceTokenKey
@@ -54,6 +42,18 @@ static NSString *CONFIGURATION_DEVICETOKENKEY = @"Configuration.DeviceTokenKey";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [userDefaults setObject:value forKey:CONFIGURATION_DEVICETOKENKEY];
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark - SessionTokenKey
 static NSString *CONFIGURATION_SESSIONTOKENKEY = @"Configuration.SessionTokenKey";

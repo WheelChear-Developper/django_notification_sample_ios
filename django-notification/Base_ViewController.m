@@ -43,13 +43,71 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)Api_KeyGet:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(NSString*)errorcode {
+//カレントViewでメッセージ表示
+-(void)messageAlert:(NSString*)errTitle
+            message:(NSString*)errMessage
+          actionmsg:(NSString*)actionMessage
+{
 
-    _dic_ApiKey = [arrayData mutableCopy];
-    NSString* key = [_dic_ApiKey objectForKey:@"apikey"];
-    [Configuration setApiKey:key];
+    UIAlertController *alert =
+    [UIAlertController alertControllerWithTitle:errTitle
+                                        message:errMessage
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+        //OKのみのシングルアクション
+        [alert addAction:[UIAlertAction actionWithTitle:actionMessage
+                                                  style:UIAlertActionStyleDefault
+                                                handler:nil]];
+
+
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)Api_BackGround:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(NSString*)errorcode {
+- (void)Api_KeyGet:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(long)errorcode {
+
+    if(errorcode == 200) {
+
+        _dic_ApiKey = [arrayData mutableCopy];
+        NSString* key = [_dic_ApiKey objectForKey:@"apikey"];
+        [Configuration setApiKey:key];
+
+        //DeviceTokenサーバー設定
+        [_api Api_DeviceTokenPost:self];
+    }else{
+
+        // 通信エラーメッセージ表示
+        [self messageAlert:@"通信エラー"
+                   message:@"サーバーとの通信異常です"
+                 actionmsg:@"OK"];
+    }
+}
+
+- (void)Api_DeviceTokenPost:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(long)errorcode {
+
+    if(errorcode == 200) {
+
+        _dic_ApiKey = [arrayData mutableCopy];
+        NSString* key = [_dic_ApiKey objectForKey:@"result"];
+
+        if([key isEqualToString:@"success"]) {
+
+
+        }else{
+
+            // 通信エラーメッセージ表示
+            [self messageAlert:@"通信エラー"
+                       message:@"サーバーとの通信異常です（バージョンチェック）"
+                     actionmsg:@"OK"];
+        }
+    }else{
+
+        // 通信エラーメッセージ表示
+        [self messageAlert:@"通信エラー"
+                   message:@"サーバーとの通信異常です"
+                 actionmsg:@"OK"];
+    }
+}
+
+- (void)Api_BackGround:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(long)errorcode {
 }
 @end

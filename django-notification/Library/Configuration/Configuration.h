@@ -14,13 +14,22 @@
 + (NSString*)getApiKey;
 + (void)setApiKey:(NSString*)value;
 
-
-
-
-
 #pragma mark - DeviceTokenKey
 + (NSString*)getDeviceTokenKey;
 + (void)setDeviceTokenKey:(NSString*)value;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark - SessionTokenKey
 + (NSString*)getSessionTokenKey;
