@@ -37,9 +37,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    //DeviceTokenサーバー設定
-    [_api Api_DeviceTokenPost:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,8 +46,13 @@
 - (void)deviceTokenCheck:(NSTimer*)timer{
 
     if(![[Configuration getDeviceTokenKey] isEqualToString:@""]) {
-        [self tokenSet];
+
+        //DeviceTokenサーバー設定
+        [_api Api_DeviceTokenPost:self];
+
         [tm_deviceTokenCheck invalidate];
+
+        [self tokenSet];
     }
 }
 
