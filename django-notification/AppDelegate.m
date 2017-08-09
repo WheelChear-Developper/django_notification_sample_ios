@@ -24,11 +24,22 @@
     //通知件数初期化
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 
-    // push通知呼び出し用
-    UIUserNotificationType types =    UIUserNotificationTypeBadge|UIUserNotificationTypeSound|UIUserNotificationTypeAlert;
-    UIUserNotificationSettings *mySettings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
-    [application registerUserNotificationSettings:mySettings];
+    // iOS8以降はこちらでアラート表示
+    if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:
+                                                UIUserNotificationTypeBadge|
+                                                UIUserNotificationTypeAlert|
+                                                UIUserNotificationTypeSound categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
 
+        // iOS8以前はこちらでアラート表示
+    } else {
+        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
+         UIRemoteNotificationTypeAlert|
+         UIRemoteNotificationTypeSound];
+    }
+    
     return YES;
 }
 

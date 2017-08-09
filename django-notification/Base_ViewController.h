@@ -12,5 +12,6 @@
 {
     Api* _api;
     NSDictionary* _dic_ApiKey;
+    NSTimer *tm_deviceTokenCheck;
 }
 @end

@@ -9,7 +9,6 @@
 #import "Base_ViewController.h"
 
 @interface Base_ViewController ()
-
 @end
 
 @implementation Base_ViewController
@@ -30,17 +29,32 @@
 
     //APIKEYの取得
     [_api Api_KeyGet:self];
+
+    // デバイストークンチェック
+    tm_deviceTokenCheck = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(deviceTokenCheck:) userInfo:nil repeats:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"viewDidAppear");
     [super viewDidAppear:animated];
+
+    //DeviceTokenサーバー設定
+    [_api Api_DeviceTokenPost:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (void)deviceTokenCheck:(NSTimer*)timer{
+
+    if(![[Configuration getDeviceTokenKey] isEqualToString:@""]) {
+        [self tokenSet];
+        [tm_deviceTokenCheck invalidate];
+    }
+}
+
+- (void)tokenSet {
 }
 
 //カレントViewでメッセージ表示
@@ -70,9 +84,6 @@
         _dic_ApiKey = [arrayData mutableCopy];
         NSString* key = [_dic_ApiKey objectForKey:@"apikey"];
         [Configuration setApiKey:key];
-
-        //DeviceTokenサーバー設定
-        [_api Api_DeviceTokenPost:self];
     }else{
 
         // 通信エラーメッセージ表示

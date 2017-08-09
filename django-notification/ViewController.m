@@ -24,17 +24,19 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"viewDidAppear");
     [super viewDidAppear:animated];
+}
+
+- (void)tokenSet {
+    self.lbl_token.text = [Configuration getDeviceTokenKey];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-- (void)Api_BackGround:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(NSString*)errorcode {
-
+- (void)Api_BackGround:(BOOL)FLG arrayData:(NSMutableArray*)arrayData errorcode:(long)errorcode {
 
 }
+
 @end

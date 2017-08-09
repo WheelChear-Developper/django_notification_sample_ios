@@ -387,9 +387,9 @@ static NSString *Err_Connection = @"Err_Connection";
     NSURL *URL_STRING = [NSURL URLWithString:str_URL];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL_STRING];
 #ifdef DEBUG
-    NSString *requestBody = [NSString stringWithFormat:@"apikey=%@&device_token=%@&device_type=iOS_Staging" , [Configuration getApiKey], [Configuration getDeviceTokenKey]];
+    NSString *requestBody = [NSString stringWithFormat:@"app_code=%@&device_token=%@&device_type=iOS_Staging" , @"APP_fGsIk7S3SSi", [Configuration getDeviceTokenKey]];
 #else
-    NSString *requestBody = [NSString stringWithFormat:@"apikey=%@&device_token=%@&device_type=iOS" , [Configuration getApiKey], [Configuration getDeviceTokenKey]];
+    NSString *requestBody = [NSString stringWithFormat:@"app_code=%@&device_token=%@&device_type=iOS" , @"APP_fGsIk7S3SSi", [Configuration getDeviceTokenKey]];
 #endif
     [request setHTTPMethod:@"POST"];
     [request setTimeoutInterval:lng_Timeout];

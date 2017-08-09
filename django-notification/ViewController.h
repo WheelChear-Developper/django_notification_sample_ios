@@ -10,6 +10,10 @@
 #import "Base_ViewController.h"
 
 @interface ViewController : Base_ViewController
+{
+    
+}
+@property (weak, nonatomic) IBOutlet UILabel *lbl_token;
 
 @end
 
