@@ -31,7 +31,7 @@
     return @"http://192.168.0.170:8000/api";
 #else
     //PRODUCTION
-    return @"";
+    return @"http://192.168.0.170:8000/api";
 #endif
 }
 
