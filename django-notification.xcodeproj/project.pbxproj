@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		102984B01F2051B6000A31C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 102984AF1F2051B6000A31C6 /* main.m */; };
 		102984B31F2051B6000A31C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 102984B21F2051B6000A31C6 /* AppDelegate.m */; };
-		102984B61F2051B6000A31C6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 102984B51F2051B6000A31C6 /* ViewController.m */; };
 		102984B91F2051B6000A31C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102984B71F2051B6000A31C6 /* Main.storyboard */; };
 		102984BB1F2051B6000A31C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 102984BA1F2051B6000A31C6 /* Assets.xcassets */; };
 		102984BE1F2051B6000A31C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 102984BC1F2051B6000A31C6 /* LaunchScreen.storyboard */; };
 		109E98091E51D2B44BF592FA /* libPods-django-notification.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 037DA9F454C6CDCE83081A73 /* libPods-django-notification.a */; };
-		10A42F1A1F39AE1400ACC927 /* Base_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10A42F191F39AE1400ACC927 /* Base_ViewController.m */; };
+		10AA7B301F3BFCBE00412688 /* Base_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AA7B2B1F3BFCBE00412688 /* Base_ViewController.m */; };
+		10AA7B311F3BFCBE00412688 /* FirstScreeen_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AA7B2D1F3BFCBE00412688 /* FirstScreeen_ViewController.m */; };
+		10AA7B321F3BFCBE00412688 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10AA7B2F1F3BFCBE00412688 /* ViewController.m */; };
+		10AA7B351F3BFFAE00412688 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 10AA7B341F3BFFAE00412688 /* logo.png */; };
+		10AA7B371F3C06E500412688 /* company_icon_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 10AA7B361F3C06E500412688 /* company_icon_logo.png */; };
 		10EDC0451F39797E0034C7A5 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EDC0351F39797E0034C7A5 /* Api.m */; };
 		10EDC0461F39797E0034C7A5 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EDC0381F39797E0034C7A5 /* Configuration.m */; };
 		10EDC0471F39797E0034C7A5 /* InputCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 10EDC03B1F39797E0034C7A5 /* InputCheck.m */; };
@@ -29,16 +32,20 @@
 		102984AF1F2051B6000A31C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		102984B11F2051B6000A31C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		102984B21F2051B6000A31C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		102984B41F2051B6000A31C6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		102984B51F2051B6000A31C6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		102984B81F2051B6000A31C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		102984BA1F2051B6000A31C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		102984BD1F2051B6000A31C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		102984BF1F2051B6000A31C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		102984C51F205E6E000A31C6 /* django-notification.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "django-notification.entitlements"; sourceTree = "<group>"; };
 		10A42F171F398EFC00ACC927 /* django-notification-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "django-notification-Prefix.pch"; sourceTree = "<group>"; };
-		10A42F181F39AE1400ACC927 /* Base_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base_ViewController.h; sourceTree = "<group>"; };
-		10A42F191F39AE1400ACC927 /* Base_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base_ViewController.m; sourceTree = "<group>"; };
+		10AA7B2A1F3BFCBE00412688 /* Base_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base_ViewController.h; sourceTree = "<group>"; };
+		10AA7B2B1F3BFCBE00412688 /* Base_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base_ViewController.m; sourceTree = "<group>"; };
+		10AA7B2C1F3BFCBE00412688 /* FirstScreeen_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstScreeen_ViewController.h; sourceTree = "<group>"; };
+		10AA7B2D1F3BFCBE00412688 /* FirstScreeen_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstScreeen_ViewController.m; sourceTree = "<group>"; };
+		10AA7B2E1F3BFCBE00412688 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		10AA7B2F1F3BFCBE00412688 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		10AA7B341F3BFFAE00412688 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		10AA7B361F3C06E500412688 /* company_icon_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = company_icon_logo.png; sourceTree = "<group>"; };
 		10EDC0341F39797E0034C7A5 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
 		10EDC0351F39797E0034C7A5 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Api.m; sourceTree = "<group>"; };
 		10EDC0371F39797E0034C7A5 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
@@ -88,17 +95,14 @@
 		102984AD1F2051B6000A31C6 /* django-notification */ = {
 			isa = PBXGroup;
 			children = (
-				10EDC0321F39797E0034C7A5 /* Library */,
 				102984C51F205E6E000A31C6 /* django-notification.entitlements */,
 				102984B11F2051B6000A31C6 /* AppDelegate.h */,
 				102984B21F2051B6000A31C6 /* AppDelegate.m */,
-				10A42F181F39AE1400ACC927 /* Base_ViewController.h */,
-				10A42F191F39AE1400ACC927 /* Base_ViewController.m */,
-				102984B41F2051B6000A31C6 /* ViewController.h */,
-				102984B51F2051B6000A31C6 /* ViewController.m */,
-				102984B71F2051B6000A31C6 /* Main.storyboard */,
+				10EDC0321F39797E0034C7A5 /* Library */,
+				10AA7B331F3BFFAE00412688 /* Resource */,
+				10AA7B281F3BFCBE00412688 /* models */,
+				10AA7B291F3BFCBE00412688 /* views */,
 				102984BA1F2051B6000A31C6 /* Assets.xcassets */,
-				102984BC1F2051B6000A31C6 /* LaunchScreen.storyboard */,
 				102984BF1F2051B6000A31C6 /* Info.plist */,
 				102984AE1F2051B6000A31C6 /* Supporting Files */,
 				10A42F171F398EFC00ACC927 /* django-notification-Prefix.pch */,
@@ -112,6 +116,37 @@
 				102984AF1F2051B6000A31C6 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		10AA7B281F3BFCBE00412688 /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		10AA7B291F3BFCBE00412688 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				102984BC1F2051B6000A31C6 /* LaunchScreen.storyboard */,
+				102984B71F2051B6000A31C6 /* Main.storyboard */,
+				10AA7B2A1F3BFCBE00412688 /* Base_ViewController.h */,
+				10AA7B2B1F3BFCBE00412688 /* Base_ViewController.m */,
+				10AA7B2C1F3BFCBE00412688 /* FirstScreeen_ViewController.h */,
+				10AA7B2D1F3BFCBE00412688 /* FirstScreeen_ViewController.m */,
+				10AA7B2E1F3BFCBE00412688 /* ViewController.h */,
+				10AA7B2F1F3BFCBE00412688 /* ViewController.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		10AA7B331F3BFFAE00412688 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				10AA7B361F3C06E500412688 /* company_icon_logo.png */,
+				10AA7B341F3BFFAE00412688 /* logo.png */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		10EDC0321F39797E0034C7A5 /* Library */ = {
@@ -265,6 +300,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10AA7B351F3BFFAE00412688 /* logo.png in Resources */,
+				10AA7B371F3C06E500412688 /* company_icon_logo.png in Resources */,
 				102984BE1F2051B6000A31C6 /* LaunchScreen.storyboard in Resources */,
 				102984BB1F2051B6000A31C6 /* Assets.xcassets in Resources */,
 				102984B91F2051B6000A31C6 /* Main.storyboard in Resources */,
@@ -326,12 +363,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10AA7B321F3BFCBE00412688 /* ViewController.m in Sources */,
 				10EDC04A1F39797E0034C7A5 /* Wheel_Callender_Library.m in Sources */,
 				10EDC0461F39797E0034C7A5 /* Configuration.m in Sources */,
-				102984B61F2051B6000A31C6 /* ViewController.m in Sources */,
 				102984B31F2051B6000A31C6 /* AppDelegate.m in Sources */,
+				10AA7B311F3BFCBE00412688 /* FirstScreeen_ViewController.m in Sources */,
 				10EDC0471F39797E0034C7A5 /* InputCheck.m in Sources */,
-				10A42F1A1F39AE1400ACC927 /* Base_ViewController.m in Sources */,
+				10AA7B301F3BFCBE00412688 /* Base_ViewController.m in Sources */,
 				10EDC0451F39797E0034C7A5 /* Api.m in Sources */,
 				10EDC0491F39797E0034C7A5 /* UIColor+Hex.m in Sources */,
 				10EDC0481F39797E0034C7A5 /* SetColor.m in Sources */,
@@ -348,6 +386,7 @@
 				102984B81F2051B6000A31C6 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		102984BC1F2051B6000A31C6 /* LaunchScreen.storyboard */ = {
@@ -356,6 +395,7 @@
 				102984BD1F2051B6000A31C6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -329,7 +329,7 @@ static NSString *Err_Connection = @"Err_Connection";
 - (BOOL)Api_KeyGet:(UIViewController*)currentView {
 
     //通信開始
-    [self setProgressHUD];
+//    [self setProgressHUD];
 
     if(currentView == nil){
         return false;
@@ -363,7 +363,7 @@ static NSString *Err_Connection = @"Err_Connection";
 - (BOOL)Api_DeviceTokenPost:(UIViewController*)currentView {
 
     //通信開始
-    [self setProgressHUD];
+//    [self setProgressHUD];
 
     if(currentView == nil){
         return false;
