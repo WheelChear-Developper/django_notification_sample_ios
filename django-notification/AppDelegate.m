@@ -21,6 +21,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    //APIKEY 初期化
+    [Configuration setApiKey:@""];
+
     //通知件数初期化
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 

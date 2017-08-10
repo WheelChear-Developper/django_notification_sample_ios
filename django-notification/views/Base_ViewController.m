@@ -45,14 +45,12 @@
 
 - (void)deviceTokenCheck:(NSTimer*)timer{
 
-    if(![[Configuration getDeviceTokenKey] isEqualToString:@""]) {
+    if(![[Configuration getApiKey] isEqualToString:@""]){
+        if(![[Configuration getDeviceTokenKey] isEqualToString:@""]) {
 
-        //DeviceTokenサーバー設定
-        [_api Api_DeviceTokenPost:self];
-
-        [tm_deviceTokenCheck invalidate];
-
-        [self tokenSet];
+            //DeviceTokenサーバー設定
+            [_api Api_DeviceTokenPost:self];
+        }
     }
 }
 
@@ -89,9 +87,17 @@
     }else{
 
         // 通信エラーメッセージ表示
-        [self messageAlert:@"通信エラー"
-                   message:@"サーバーとの通信異常です"
-                 actionmsg:@"OK"];
+        UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:@"通信エラー"
+                                            message:@"サーバーとの通信できていません。再度通信します。"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [_api Api_KeyGet:self];
+
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 
@@ -104,20 +110,41 @@
 
         if([key isEqualToString:@"success"]) {
 
+            [tm_deviceTokenCheck invalidate];
+
+            [self tokenSet];
 
         }else{
 
             // 通信エラーメッセージ表示
-            [self messageAlert:@"通信エラー"
-                       message:@"サーバーとの通信異常です（バージョンチェック）"
-                     actionmsg:@"OK"];
+            UIAlertController *alert =
+            [UIAlertController alertControllerWithTitle:@"通信エラー"
+                                                message:@"サーバーとの通信できていません。再度通信します。"
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                      style:UIAlertActionStyleDefault
+                                                    handler:^(UIAlertAction *action) {
+                                                        //DeviceTokenサーバー設定
+                                                        [_api Api_DeviceTokenPost:self];
+
+                                                    }]];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }else{
 
         // 通信エラーメッセージ表示
-        [self messageAlert:@"通信エラー"
-                   message:@"サーバーとの通信異常です"
-                 actionmsg:@"OK"];
+        UIAlertController *alert =
+        [UIAlertController alertControllerWithTitle:@"通信エラー"
+                                            message:@"サーバーとの通信できていません。再度通信します。"
+                                     preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"OK"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    //DeviceTokenサーバー設定
+                                                    [_api Api_DeviceTokenPost:self];
+
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
     }
 }
 

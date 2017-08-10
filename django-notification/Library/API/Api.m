@@ -247,36 +247,13 @@ static NSString *Err_Connection = @"Err_Connection";
 
         //エラーでのログイン画面へ
         [_apidelegate Api_KeyGet:NO arrayData:nil errorcode:Err_Connection.integerValue];
-
-    }else{
-
-        // 通信エラーメッセージ表示
-        [self messageAlert:connection
-                      type:Err_Other
-                     Title:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrTitleMsg",@"")
-                   message:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrMsg",@"")
-                 actionmsg:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrOK",@"")];
     }
     
     if(connection == _conection_DeviceTokenPost){
         
         //エラーでのログイン画面へ
         [_apidelegate Api_DeviceTokenPost:NO arrayData:nil errorcode:Err_Connection.integerValue];
-        
-    }else{
-        
-        // 通信エラーメッセージ表示
-        [self messageAlert:connection
-                      type:Err_Other
-                     Title:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrTitleMsg",@"")
-                   message:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrMsg",@"")
-                 actionmsg:NSLocalizedString(@"Dialog_API_IntenetNotConnectErrOK",@"")];
     }
-
-
-
-
-
 
 
 }
