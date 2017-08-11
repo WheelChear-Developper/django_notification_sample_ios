@@ -25,10 +25,12 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+
 }
 
 - (void)tokenSet {
-    self.lbl_token.text = [Configuration getDeviceTokenKey];
+//    self.lbl_token.text = [Configuration getDeviceTokenKey];
 }
 
 - (void)didReceiveMemoryWarning {
