@@ -20,7 +20,7 @@
     if(self = [super init]){
         
         //タイムアウト時間設定
-        lng_Timeout = 20;
+        lng_Timeout = 10;
     }
     return self;
 }
